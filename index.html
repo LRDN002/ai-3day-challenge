@@ -7,6 +7,18 @@
   <title>초보자도 따라하는 AI 수익화 부트캠프 | 무료 3일 챌린지</title>
   <meta name="description" content="AI 하나로 고객이 자동으로 모이는 사이트 만들기. 3일 무료 챌린지. 4월 5일 마감.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '733685766494711');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=733685766494711&ev=PageView&noscript=1"/></noscript>
   <script>
     tailwind.config = {
       theme: {
@@ -731,9 +743,30 @@
   <!-- ═══════════════════════════════════
        FOOTER
   ════════════════════════════════════ -->
-  <footer class="py-10 px-6 bg-gray-950 text-center">
-    <img src="./brand_logo/logo.png" alt="로고" class="h-8 w-auto mx-auto mb-4 opacity-70">
-    <p class="text-gray-600 text-xs">© 2025 AI 수익화 부트캠프. All rights reserved.</p>
+  <footer class="py-12 px-6 bg-gray-900 text-gray-400 text-sm">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-xs font-semibold tracking-widest text-gray-500 uppercase mb-5">Company Information</p>
+      <div class="flex flex-col md:flex-row md:justify-between gap-6 mb-8">
+        <div class="space-y-1.5 text-xs leading-relaxed">
+          <p>회사명 | A&amp;</p>
+          <p>대표이사 | 안서형</p>
+          <p>주소 | 경기도 파주시 헤이리마을길 21-1, 302</p>
+          <p>사업자등록번호 | 151-65-00215</p>
+          <p>통신판매사업자 번호 | 2024-고양덕양구-1471</p>
+        </div>
+        <div class="space-y-1.5 text-xs leading-relaxed">
+          <p>이메일 | launch.bizlab@gmail.com</p>
+          <p>문의 | 카카오톡 @런치비즈니스연구소</p>
+          <div class="pt-3 flex gap-4">
+            <a href="https://termsandpolicy.snaplauncher.net/terms" target="_blank"
+              class="text-blue-400 hover:text-blue-300 underline">이용약관</a>
+            <a href="https://termsandpolicy.snaplauncher.net/policy" target="_blank"
+              class="text-blue-400 hover:text-blue-300 underline">개인정보처리방침</a>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-gray-600 border-t border-gray-800 pt-6">Copyright. 2026. A&amp; All rights reserved.</p>
+    </div>
   </footer>
 
   <!-- ═══════════════════════════════════
@@ -819,6 +852,12 @@
         email: this.querySelector('[name="email"]').value,
         phone: this.querySelector('[name="phone"]').value,
       };
+
+      fbq('track', 'Lead', {
+        content_name: 'AI 3일 챌린지',
+        em: data.email,
+        ph: data.phone,
+      });
 
       fetch('https://hook.us1.make.com/0pwti590hik9u0wcvw6n2cvcswfvnih6', {
         method: 'POST',
