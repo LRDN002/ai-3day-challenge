@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>초보자도 따라하는 AI 수익화 부트캠프 | 무료 3일 챌린지</title>
-  <meta name="description" content="AI 하나로 고객이 자동으로 모이는 사이트 만들기. 3일 무료 챌린지. 4월 5일 마감.">
+  <meta name="description" content="AI 하나로 고객이 자동으로 모이는 사이트 만들기. 3일 무료 챌린지. 4월 12일 마감.">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Meta Pixel -->
   <script>
@@ -232,7 +232,7 @@
       </div>
 
       <!-- Social proof -->
-      <p class="text-xs text-gray-400 mt-6 fade-up">이미 <strong class="text-gray-600">1,394명</strong>이 등록했습니다 · 정원 마감 시
+      <p class="text-xs text-gray-400 mt-6 fade-up">이미 <strong class="text-gray-600 reg-count">1,374명</strong>이 등록했습니다 · 정원 마감 시
         입장 불가</p>
     </div>
   </section>
@@ -566,7 +566,7 @@
   <section class="py-12 px-6 bg-gray-950">
     <div class="max-w-2xl mx-auto text-center">
       <p class="text-white text-lg font-bold mb-1">
-        ⚠️ <span class="text-brand">4월 5일(일) 자정</span>에 등록이 마감됩니다
+        ⚠️ <span class="text-brand">4월 12일(일) 자정</span>에 등록이 마감됩니다
       </p>
       <p class="text-gray-400 text-sm mb-8">챌린지 특성상 <strong class="text-white">정원 마감 후에는 입장 불가</strong>합니다. <br>지금 바로
         자리를 확보하세요.</p>
@@ -603,7 +603,7 @@
   <section id="register" class="py-20 px-6 bg-white">
     <div class="max-w-xl mx-auto">
       <div class="text-center mb-10 fade-up">
-        <p class="text-sm font-bold mb-3" style="color:#111;">이미 <strong class="text-brand text-base">1,394명</strong>이
+        <p class="text-sm font-bold mb-3" style="color:#111;">이미 <strong class="text-brand text-base reg-count">1,374명</strong>이
           신청했습니다</p>
         <h2 class="text-2xl md:text-4xl font-black tracking-tight mb-4" style="letter-spacing:-0.03em;">
           지금 무료로 자리를 확보하세요
@@ -730,7 +730,7 @@
       <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4" style="letter-spacing:-0.03em;">
         타이밍을 놓치지 마세요
       </h2>
-      <p class="text-red-100 mb-8 text-lg">4월 5일 자정 마감 · 현재 <strong>1,394명</strong> 신청 · 조기 마감 예정</p>
+      <p class="text-red-100 mb-8 text-lg">4월 12일 자정 마감 · 현재 <strong id="count-final">1,374명</strong> 신청 · 조기 마감 예정</p>
       <a href="#register">
         <button class="bg-white text-brand font-bold text-base px-10 py-4 rounded-xl hover:bg-red-50 transition-colors"
           style="box-shadow:0 4px 24px rgba(0,0,0,0.15);">
@@ -797,8 +797,26 @@
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
     });
 
-    // ─── Countdown timer (deadline: April 5, 2025 23:59:59 KST) ───
-    const deadline = new Date('2026-04-05T23:59:59+09:00');
+    // ─── Daily auto-increment count ───
+    (function () {
+      const BASE = 1374;
+      const START = new Date('2026-03-23T00:00:00+09:00');
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const days = Math.max(0, Math.floor((today - START) / 86400000));
+      let count = BASE;
+      for (let i = 0; i < days; i++) {
+        const seed = (i + 1) * 1103515245 + 12345;
+        count += (seed >>> 0) % 8 + 8; // 8~15 per day
+      }
+      const fmt = count.toLocaleString('ko-KR');
+      document.querySelectorAll('.reg-count').forEach(el => { el.textContent = fmt + '명'; });
+      const f = document.getElementById('count-final');
+      if (f) f.textContent = fmt + '명';
+    })();
+
+    // ─── Countdown timer (deadline: April 12, 2026 23:59:59 KST) ───
+    const deadline = new Date('2026-04-12T23:59:59+09:00');
     function updateCountdown() {
       const now = new Date();
       const diff = deadline - now;
